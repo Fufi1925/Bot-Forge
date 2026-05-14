@@ -1,2 +1,41 @@
-import { Link } from 'react-router-dom';
-export default function Terms(){return <div className="min-h-screen grid-bg"><nav className="border-b border-white/5 glass-s"><div className="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between"><Link to="/" className="flex items-center gap-2"><div className="w-8 h-8 rounded-lg bg-gradient-to-br from-cyan-400 via-purple-500 to-pink-500 flex items-center justify-center text-white text-xs font-bold">⚡</div><span className="text-sm font-bold grad-text">BotForge</span></Link></div></nav><div className="max-w-3xl mx-auto px-4 py-12"><h1 className="text-3xl font-black mb-2">Terms of <span className="grad-text">Service</span></h1><p className="text-xs text-gray-500 mb-8">Letztes Update: 1. Januar 2024</p><div className="space-y-4">{[{t:'1. Akzeptanz',c:'Durch die Nutzung von BotForge stimmst du diesen Bedingungen zu.'},{t:'2. Beschreibung',c:'BotForge ist ein Discord Bot mit Moderation, Musik, Tickets und mehr.'},{t:'3. Nutzung',c:'Du musst mindestens 13 Jahre alt sein und Discord ToS einhalten.'},{t:'4. Daten',c:'Wir speichern nur notwendige Daten. Siehe Privacy Policy.'},{t:'5. Verfügbarkeit',c:'Wir streben 99.9% Uptime an, garantieren dies aber nicht.'},{t:'6. Haftung',c:'BotForge haftet nicht für Schäden aus der Nutzung.'},{t:'7. Änderungen',c:'Bedingungen können jederzeit geändert werden.'},{t:'8. Kontakt',c:'legal@botforge.dev'}].map((s,i)=><div key={i} className="card"><h2 className="text-sm font-bold text-white mb-2">{s.t}</h2><p className="text-xs text-gray-400">{s.c}</p></div>)}</div></div></div>;}
+export default function Terms() {
+  return (
+    <div className="pt-28 pb-16 max-w-4xl mx-auto px-4">
+      <h1 className="text-4xl sm:text-5xl font-black mb-3 fade-up">
+        Terms of <span className="text-gradient">Service</span>
+      </h1>
+      <p className="text-gray-400 mb-10 text-sm">Zuletzt aktualisiert: {new Date().toLocaleDateString("de-DE")}</p>
+
+      <div className="glass p-8 space-y-6 text-gray-300 leading-relaxed text-sm">
+        <section>
+          <h2 className="text-xl font-bold text-white mb-3">1. Geltungsbereich</h2>
+          <p>Diese Nutzungsbedingungen gelten für die Nutzung des Discord-Bots "BotForge" sowie des dazugehörigen Web-Dashboards. Durch das Hinzufügen des Bots zu einem Discord-Server oder das Nutzen des Dashboards akzeptierst du diese Bedingungen.</p>
+        </section>
+        <section>
+          <h2 className="text-xl font-bold text-white mb-3">2. Nutzung</h2>
+          <p>BotForge darf nur im Einklang mit den Discord Terms of Service und Community Guidelines genutzt werden. Missbrauch, Spam oder Angriffe auf die Infrastruktur führen zum Ausschluss.</p>
+        </section>
+        <section>
+          <h2 className="text-xl font-bold text-white mb-3">3. Daten</h2>
+          <p>Wir speichern ausschließlich Daten, die für den Betrieb notwendig sind (Server-IDs, Konfigurationen, Log-Einträge). Details in der <a href="/privacy" className="text-violet-400">Privacy Policy</a>.</p>
+        </section>
+        <section>
+          <h2 className="text-xl font-bold text-white mb-3">4. Verfügbarkeit</h2>
+          <p>Wir bemühen uns um 99,9% Uptime, garantieren jedoch keine unterbrechungsfreie Verfügbarkeit. Wartungen werden angekündigt.</p>
+        </section>
+        <section>
+          <h2 className="text-xl font-bold text-white mb-3">5. Haftung</h2>
+          <p>BotForge wird "as-is" bereitgestellt. Wir haften nicht für Schäden, die durch Nutzung entstehen, soweit gesetzlich zulässig.</p>
+        </section>
+        <section>
+          <h2 className="text-xl font-bold text-white mb-3">6. Änderungen</h2>
+          <p>Wir behalten uns vor, diese Bedingungen zu ändern. Wesentliche Änderungen werden kommuniziert.</p>
+        </section>
+        <section>
+          <h2 className="text-xl font-bold text-white mb-3">7. Kontakt</h2>
+          <p>Bei Fragen: <a href="mailto:support@botforge.app" className="text-violet-400">support@botforge.app</a> oder über unseren Discord Support Server.</p>
+        </section>
+      </div>
+    </div>
+  );
+}
