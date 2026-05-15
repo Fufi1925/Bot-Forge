@@ -135,7 +135,7 @@ export default function Home() {
 
           <div className="fade-up fade-up-3 flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
             <a
-              href="https://discord.com/api/oauth2/authorize?client_id=YOUR_CLIENT_ID&permissions=8&scope=bot%20applications.commands"
+              href="https://discord.com/api/oauth2/authorize?client_id=1504519197584003123&permissions=8&scope=bot%20applications.commands"
               target="_blank"
               rel="noopener noreferrer"
               className="btn-primary inline-flex items-center gap-2"
