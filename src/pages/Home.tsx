@@ -467,7 +467,7 @@ export default function Home() {
               <li className="flex gap-2"><Check className="w-4 h-4 text-green-400" /> AutoMod, Tickets, Music</li>
               <li className="flex gap-2"><Check className="w-4 h-4 text-green-400" /> Community Support</li>
             </ul>
-            <a href="https://discord.com/api/oauth2/authorize?client_id=YOUR_CLIENT_ID&permissions=8&scope=bot%20applications.commands" target="_blank" rel="noopener noreferrer" className="btn-ghost w-full block text-center">Jetzt starten</a>
+            <a href="https://discord.com/api/oauth2/authorize?client_id=1504519197584003123&permissions=8&scope=bot%20applications.commands" target="_blank" rel="noopener noreferrer" className="btn-ghost w-full block text-center">Jetzt starten</a>
           </div>
 
           <div className="glass-strong p-8 hover-lift relative glow-violet">
@@ -552,7 +552,7 @@ export default function Home() {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a
-                href="https://discord.com/api/oauth2/authorize?client_id=YOUR_CLIENT_ID&permissions=8&scope=bot%20applications.commands"
+                href="https://discord.com/api/oauth2/authorize?client_id=1504519197584003123&permissions=8&scope=bot%20applications.commands"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn-primary inline-flex items-center gap-2 justify-center"
