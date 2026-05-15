@@ -3,7 +3,9 @@ import { useEffect, useState, useRef } from "react";
 import {
   Bot, Shield, Ticket, Music, MessageSquare, Sparkles, Zap, BarChart3,
   Users, Hash, Command, Activity, Lock, Wand2, ArrowRight, Play, Check,
-  Crown, Bell, Globe, Cpu, Star, Rocket
+  Crown, Bell, Globe, Cpu, Star, Rocket, Download, Settings,
+  ChevronDown, ChevronUp, Gauge, Headphones, Code2, Database, Cloud,
+  HeartHandshake, TrendingUp, Award, Terminal
 } from "lucide-react";
 
 function useCounter(target: number, duration = 2000, start = true) {
@@ -35,9 +37,29 @@ function Stat({ value, label, suffix = "" }: { value: number; label: string; suf
   );
 }
 
+function FAQ({ q, a }: { q: string; a: string }) {
+  const [open, setOpen] = useState(false);
+  return (
+    <div className="glass rounded-xl overflow-hidden">
+      <button
+        onClick={() => setOpen(!open)}
+        className="w-full flex items-center justify-between p-5 text-left hover:bg-white/5 transition"
+      >
+        <span className="font-semibold">{q}</span>
+        {open ? <ChevronUp className="w-5 h-5 text-violet-400" /> : <ChevronDown className="w-5 h-5 text-gray-400" />}
+      </button>
+      {open && (
+        <div className="px-5 pb-5 text-sm text-gray-400 leading-relaxed fade-up">
+          {a}
+        </div>
+      )}
+    </div>
+  );
+}
+
 const features = [
-  { icon: Shield, title: "AutoMod 2.0", desc: "KI-gestützte Filter für Beleidigungen, Spam, Links, Caps, Invites, Massen-Pings und mehr.", color: "from-red-500 to-pink-500" },
-  { icon: Ticket, title: "Ticket-System", desc: "Transcripts, Kategorien, Panel-Builder, private Threads und Team-Zuweisungen.", color: "from-amber-500 to-orange-500" },
+  { icon: Shield, title: "AutoMod 2.0", desc: "KI-gestützte Filter für Beleidigungen, Spam, Links, Caps, Invites, Massen-Pings und NSFW.", color: "from-red-500 to-pink-500" },
+  { icon: Ticket, title: "Ticket-System", desc: "Dropdown-Menüs, Transcripts, Panel-Builder, private Threads und Team-Zuweisungen.", color: "from-amber-500 to-orange-500" },
   { icon: MessageSquare, title: "Welcome & Leave", desc: "Animierte Willkommens-Cards mit Banner-Upload, DM-Nachrichten und Rollen-Autoassign.", color: "from-green-500 to-emerald-500" },
   { icon: Music, title: "Music Player", desc: "YouTube, Spotify, SoundCloud — Queue, Loop, 24/7 Mode, Filters, Lyrics und Volume.", color: "from-violet-500 to-purple-500" },
   { icon: BarChart3, title: "Live Stats", desc: "Commands, Mitglieder, Nachrichten-Level, Voice-Minuten und Aktivitätscharts.", color: "from-cyan-500 to-blue-500" },
@@ -48,6 +70,10 @@ const features = [
   { icon: Command, title: "Custom Commands", desc: "Baue eigene Commands mit Variablen, Embeds, Reaktionen und Cooldowns.", color: "from-indigo-500 to-violet-500" },
   { icon: Bell, title: "DM Notifications", desc: "User bekommen automatische DMs bei Timeout, Mute, Kick, Ban — mit Grund und Dauer.", color: "from-sky-500 to-cyan-500" },
   { icon: Globe, title: "Multi-Language", desc: "Deutsch, Englisch, Französisch, Spanisch und 10 weitere Sprachen.", color: "from-emerald-500 to-teal-500" },
+  { icon: Terminal, title: "Slash Commands", desc: "100+ moderne Slash-Commands mit Auto-Complete und eingebauter Hilfe.", color: "from-rose-500 to-red-500" },
+  { icon: Gauge, title: "Live Dashboard", desc: "Konfiguriere alles per Web — kein einziger Command nötig.", color: "from-blue-500 to-indigo-500" },
+  { icon: Headphones, title: "24/7 Support", desc: "Support-Server und schnelles Team für alle deine Fragen.", color: "from-lime-500 to-green-500" },
+  { icon: Rocket, title: "Premium Features", desc: "Erweiterte Funktionen für Power-User und große Communities.", color: "from-pink-500 to-fuchsia-500" },
 ];
 
 const commands = [
@@ -59,6 +85,24 @@ const commands = [
   { name: "/level", desc: "Zeigt dein Rank-Card" },
   { name: "/automod", desc: "AutoMod konfigurieren" },
   { name: "/stats", desc: "Server-Statistiken anzeigen" },
+];
+
+const testimonials = [
+  { name: "Nebula Gaming", members: "12,4k", quote: "BotForge hat 5 andere Bots auf unserem Server ersetzt. Das Dashboard ist genial.", color: "from-violet-500 to-pink-500" },
+  { name: "ArtStation DE", members: "28,3k", quote: "Das AutoMod spart uns täglich Stunden an Moderationsarbeit.", color: "from-pink-500 to-rose-500" },
+  { name: "Music Lounge", members: "8,4k", quote: "Der Music-Player ist butterweich und die Queue-Verwaltung perfekt.", color: "from-amber-500 to-orange-500" },
+  { name: "CyberDev Hub", members: "4,8k", quote: "Tickets mit Dropdown und Transcripts — genau was wir brauchten.", color: "from-cyan-500 to-blue-500" },
+  { name: "Anime Universe", members: "42,9k", quote: "Selbst bei 40k+ Membern läuft BotForge stabil und schnell.", color: "from-fuchsia-500 to-purple-500" },
+  { name: "Study Together", members: "3,2k", quote: "Das Leveling-System motiviert unsere Community ungemein.", color: "from-emerald-500 to-teal-500" },
+];
+
+const techStack = [
+  { icon: Code2, name: "Python 3.11", desc: "discord.py" },
+  { icon: Gauge, name: "React + Vite", desc: "TypeScript" },
+  { icon: Database, name: "MongoDB Atlas", desc: "Cloud DB" },
+  { icon: Cloud, name: "Railway", desc: "Hosting" },
+  { icon: Music, name: "Lavalink", desc: "Audio Engine" },
+  { icon: Shield, name: "Discord OAuth2", desc: "Sicherer Login" },
 ];
 
 export default function Home() {
@@ -111,6 +155,8 @@ export default function Home() {
             <div className="flex items-center gap-1.5"><Check className="w-4 h-4 text-green-400" /> 99.9% Uptime</div>
             <div className="flex items-center gap-1.5"><Check className="w-4 h-4 text-green-400" /> DSGVO-konform</div>
             <div className="flex items-center gap-1.5"><Check className="w-4 h-4 text-green-400" /> 24/7 Support</div>
+            <div className="flex items-center gap-1.5"><Check className="w-4 h-4 text-green-400" /> 100+ Commands</div>
+            <div className="flex items-center gap-1.5"><Check className="w-4 h-4 text-green-400" /> Ticket-Dropdown</div>
           </div>
         </div>
 
@@ -175,6 +221,42 @@ export default function Home() {
         </div>
       </section>
 
+      {/* How it works */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 py-20">
+        <div className="text-center mb-14">
+          <div className="inline-flex items-center gap-2 glass px-4 py-1.5 rounded-full text-xs mb-4">
+            <Rocket className="w-3 h-3 text-cyan-400" />
+            <span>So funktioniert's</span>
+          </div>
+          <h2 className="text-4xl sm:text-5xl font-black mb-4">
+            In 3 Schritten <span className="text-gradient">startklar.</span>
+          </h2>
+          <p className="text-gray-400 max-w-2xl mx-auto">
+            Kein Programmieren, kein Kopfzerbrechen — einfach einladen und per Dashboard konfigurieren.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {[
+            { n: "01", icon: Download, title: "Bot einladen", desc: "Klick auf 'Add to Discord' und wähle deinen Server. BotForge fragt nur nach nötigen Rechten." },
+            { n: "02", icon: Settings, title: "Dashboard öffnen", desc: "Logge dich mit Discord ein, wähle deinen Server und konfiguriere alle Module per Mausklick." },
+            { n: "03", icon: Sparkles, title: "Genießen", desc: "AutoMod, Tickets, Music und alles andere läuft automatisch. Du lehnst dich zurück." },
+          ].map((s, i) => {
+            const Icon = s.icon;
+            return (
+              <div key={i} className="glass p-8 relative hover-lift">
+                <div className="absolute -top-4 -left-4 w-14 h-14 rounded-2xl bg-gradient-to-br from-violet-500 to-cyan-400 flex items-center justify-center font-black text-lg glow-violet">
+                  {s.n}
+                </div>
+                <Icon className="w-10 h-10 text-violet-400 mb-4 mt-4" />
+                <h3 className="text-xl font-bold mb-2">{s.title}</h3>
+                <p className="text-gray-400 text-sm">{s.desc}</p>
+              </div>
+            );
+          })}
+        </div>
+      </section>
+
       {/* Features */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 py-20">
         <div className="text-center mb-14">
@@ -190,7 +272,7 @@ export default function Home() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
           {features.map((f, i) => {
             const Icon = f.icon;
             return (
@@ -203,6 +285,60 @@ export default function Home() {
               </div>
             );
           })}
+        </div>
+      </section>
+
+      {/* Ticket Showcase */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 py-20">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          <div>
+            <div className="inline-flex items-center gap-2 glass px-4 py-1.5 rounded-full text-xs mb-4">
+              <Ticket className="w-3 h-3 text-amber-400" />
+              <span>Highlight · Ticket-System</span>
+            </div>
+            <h2 className="text-4xl sm:text-5xl font-black mb-5">
+              Tickets mit <span className="text-gradient">Dropdown-Menü.</span>
+            </h2>
+            <p className="text-gray-400 mb-6 leading-relaxed">
+              User wählen per elegantem Discord-Dropdown ihre Ticket-Kategorie — Support, Report,
+              Partner oder Bug-Report. Das Team wird automatisch zugewiesen und Transcripts werden
+              gespeichert.
+            </p>
+            <ul className="space-y-3 text-sm text-gray-300">
+              {[
+                "Dropdown mit bis zu 25 Kategorien",
+                "Auto-Claim durch Team-Members",
+                "Transcripts als HTML oder TXT",
+                "Private Threads als Alternative",
+                "Feedback nach Ticket-Schließung",
+              ].map((t, i) => (
+                <li key={i} className="flex items-start gap-2">
+                  <Check className="w-5 h-5 text-green-400 mt-0.5 flex-shrink-0" />
+                  <span>{t}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div className="glass p-6">
+            <div className="text-xs text-gray-400 mb-3 flex items-center gap-2">
+              <div className="w-6 h-6 rounded-full bg-gradient-to-br from-violet-500 to-cyan-400 flex items-center justify-center text-[10px] font-bold">B</div>
+              BotForge · Heute um 12:34
+            </div>
+            <div className="embed-preview" style={{ borderLeftColor: "#F59E0B" }}>
+              <div className="font-bold mb-2">🎫 Support-Ticket erstellen</div>
+              <div className="text-gray-300 text-sm mb-3">Wähle eine Kategorie, um ein Ticket zu öffnen.<br />Unser Team wird sich schnellstmöglich kümmern.</div>
+              <div className="bg-black/40 rounded-lg p-3 flex items-center justify-between cursor-pointer hover:bg-black/60 transition">
+                <span className="text-sm text-gray-300">Wähle eine Kategorie...</span>
+                <ChevronDown className="w-4 h-4 text-gray-400" />
+              </div>
+              <div className="mt-2 space-y-1">
+                <div className="text-xs text-gray-400 p-2 bg-black/20 rounded flex items-center gap-2">❓ <span className="text-gray-300">Allgemeine Frage</span></div>
+                <div className="text-xs text-gray-400 p-2 bg-black/20 rounded flex items-center gap-2">⚠️ <span className="text-gray-300">Report</span></div>
+                <div className="text-xs text-gray-400 p-2 bg-black/20 rounded flex items-center gap-2">🤝 <span className="text-gray-300">Partner</span></div>
+                <div className="text-xs text-gray-400 p-2 bg-black/20 rounded flex items-center gap-2">🐛 <span className="text-gray-300">Bug-Report</span></div>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -256,6 +392,9 @@ export default function Home() {
             { icon: Cpu, title: "Blitzschnell", desc: "Gehostet auf Railway mit <50ms Response-Time und 99.9% Uptime." },
             { icon: Activity, title: "Live Dashboard", desc: "Alle Stats in Echtzeit — keine Fake-Zahlen, echte Discord API Daten." },
             { icon: Rocket, title: "Skaliert mit dir", desc: "Vom 10-Member-Server bis zum 100k-Member-Community — BotForge wächst mit." },
+            { icon: HeartHandshake, title: "Community-driven", desc: "Feature-Requests werden ernst genommen und oft innerhalb einer Woche umgesetzt." },
+            { icon: TrendingUp, title: "Immer besser", desc: "Wöchentliche Updates mit neuen Features und Verbesserungen." },
+            { icon: Award, title: "Kostenlos für immer", desc: "Alle Kern-Features sind und bleiben kostenlos. Premium ist optional." },
           ].map((r, i) => {
             const Icon = r.icon;
             return (
@@ -268,6 +407,133 @@ export default function Home() {
               </div>
             );
           })}
+        </div>
+      </section>
+
+      {/* Testimonials */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 py-20">
+        <div className="text-center mb-14">
+          <div className="inline-flex items-center gap-2 glass px-4 py-1.5 rounded-full text-xs mb-4">
+            <Star className="w-3 h-3 text-yellow-400" />
+            <span>Beliebt bei Top-Servern</span>
+          </div>
+          <h2 className="text-4xl sm:text-5xl font-black mb-4">
+            Von Communities <span className="text-gradient">geliebt.</span>
+          </h2>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+          {testimonials.map((t, i) => (
+            <div key={i} className="glass p-6 hover-lift">
+              <div className="flex items-center gap-3 mb-4">
+                <div className={`w-12 h-12 rounded-2xl bg-gradient-to-br ${t.color} flex items-center justify-center text-white font-black`}>
+                  {t.name[0]}
+                </div>
+                <div>
+                  <div className="font-bold">{t.name}</div>
+                  <div className="text-xs text-gray-400">{t.members} Members</div>
+                </div>
+              </div>
+              <p className="text-sm text-gray-300 italic">"{t.quote}"</p>
+              <div className="flex gap-1 mt-3">
+                {[1,2,3,4,5].map((s) => <Star key={s} className="w-4 h-4 fill-yellow-400 text-yellow-400" />)}
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Pricing */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 py-20">
+        <div className="text-center mb-14">
+          <div className="inline-flex items-center gap-2 glass px-4 py-1.5 rounded-full text-xs mb-4">
+            <Crown className="w-3 h-3 text-amber-400" />
+            <span>Pricing</span>
+          </div>
+          <h2 className="text-4xl sm:text-5xl font-black mb-4">
+            Starte <span className="text-gradient">kostenlos.</span>
+          </h2>
+          <p className="text-gray-400 max-w-2xl mx-auto">
+            Alle Kern-Features sind gratis. Premium gibt dir Extra-Power für große Communities.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+          <div className="glass p-8 hover-lift">
+            <h3 className="text-xl font-bold mb-2">Free</h3>
+            <div className="text-4xl font-black mb-4">0€<span className="text-sm text-gray-400 font-normal">/mo</span></div>
+            <ul className="space-y-2 text-sm text-gray-300 mb-6">
+              <li className="flex gap-2"><Check className="w-4 h-4 text-green-400" /> Alle Kern-Features</li>
+              <li className="flex gap-2"><Check className="w-4 h-4 text-green-400" /> Dashboard-Zugang</li>
+              <li className="flex gap-2"><Check className="w-4 h-4 text-green-400" /> AutoMod, Tickets, Music</li>
+              <li className="flex gap-2"><Check className="w-4 h-4 text-green-400" /> Community Support</li>
+            </ul>
+            <a href="https://discord.com/api/oauth2/authorize?client_id=YOUR_CLIENT_ID&permissions=8&scope=bot%20applications.commands" target="_blank" rel="noopener noreferrer" className="btn-ghost w-full block text-center">Jetzt starten</a>
+          </div>
+
+          <div className="glass-strong p-8 hover-lift relative glow-violet">
+            <div className="absolute -top-3 left-1/2 -translate-x-1/2 text-xs bg-gradient-to-r from-violet-500 to-cyan-400 px-3 py-1 rounded-full font-bold">BELIEBT</div>
+            <h3 className="text-xl font-bold mb-2">Premium</h3>
+            <div className="text-4xl font-black mb-4">4,99€<span className="text-sm text-gray-400 font-normal">/mo</span></div>
+            <ul className="space-y-2 text-sm text-gray-300 mb-6">
+              <li className="flex gap-2"><Check className="w-4 h-4 text-green-400" /> Alles aus Free</li>
+              <li className="flex gap-2"><Check className="w-4 h-4 text-green-400" /> Custom Branding</li>
+              <li className="flex gap-2"><Check className="w-4 h-4 text-green-400" /> Erweiterte Analytics</li>
+              <li className="flex gap-2"><Check className="w-4 h-4 text-green-400" /> Priority Support</li>
+              <li className="flex gap-2"><Check className="w-4 h-4 text-green-400" /> 24/7 Music Mode</li>
+            </ul>
+            <a href="https://discord.gg/botforge" target="_blank" rel="noopener noreferrer" className="btn-primary w-full block text-center">Upgrade</a>
+          </div>
+
+          <div className="glass p-8 hover-lift">
+            <h3 className="text-xl font-bold mb-2">Enterprise</h3>
+            <div className="text-4xl font-black mb-4">Custom</div>
+            <ul className="space-y-2 text-sm text-gray-300 mb-6">
+              <li className="flex gap-2"><Check className="w-4 h-4 text-green-400" /> Alles aus Premium</li>
+              <li className="flex gap-2"><Check className="w-4 h-4 text-green-400" /> Custom Bot-Branding</li>
+              <li className="flex gap-2"><Check className="w-4 h-4 text-green-400" /> Dedicated Support</li>
+              <li className="flex gap-2"><Check className="w-4 h-4 text-green-400" /> SLA-Garantie</li>
+            </ul>
+            <a href="mailto:enterprise@botforge.app" className="btn-ghost w-full block text-center">Kontakt</a>
+          </div>
+        </div>
+      </section>
+
+      {/* Tech Stack */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 py-20">
+        <div className="text-center mb-14">
+          <h2 className="text-4xl sm:text-5xl font-black mb-4">
+            Gebaut mit <span className="text-gradient">bestechender Tech.</span>
+          </h2>
+        </div>
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+          {techStack.map((t, i) => {
+            const Icon = t.icon;
+            return (
+              <div key={i} className="glass p-5 text-center hover-lift">
+                <Icon className="w-8 h-8 text-violet-400 mx-auto mb-2" />
+                <div className="font-bold text-sm">{t.name}</div>
+                <div className="text-xs text-gray-400">{t.desc}</div>
+              </div>
+            );
+          })}
+        </div>
+      </section>
+
+      {/* FAQ */}
+      <section className="max-w-4xl mx-auto px-4 sm:px-6 py-20">
+        <div className="text-center mb-14">
+          <h2 className="text-4xl sm:text-5xl font-black mb-4">
+            Häufige <span className="text-gradient">Fragen.</span>
+          </h2>
+        </div>
+        <div className="space-y-3">
+          <FAQ q="Ist BotForge wirklich kostenlos?" a="Ja! Alle Kern-Features (AutoMod, Tickets, Music, Welcome, Leveling, Logging) sind komplett gratis. Premium bietet nur Zusatz-Features wie Custom Branding und erweiterte Analytics." />
+          <FAQ q="Wie füge ich BotForge zu meinem Server hinzu?" a="Klicke einfach auf 'Add to Discord' oben auf der Seite, wähle deinen Server und bestätige die Berechtigungen. Danach kannst du alles über das Dashboard konfigurieren." />
+          <FAQ q="Wo werden meine Daten gespeichert?" a="Alle Daten liegen DSGVO-konform auf Servern in der EU (MongoDB Atlas EU-Region). Wir speichern nur, was für den Betrieb nötig ist. Details in der Privacy Policy." />
+          <FAQ q="Kann ich BotForge selbst hosten?" a="BotForge wird zentral von uns gehostet und gewartet. Du musst dich um nichts kümmern — der Bot läuft 24/7 auf unserer Infrastruktur. Self-Hosting wird aktuell nicht unterstützt." />
+          <FAQ q="Wie funktioniert das Ticket-System?" a="Du sendest mit /ticket panel ein Embed mit Dropdown-Menü in einen Channel. User wählen per Dropdown ihre Kategorie (Support, Report, Partner, etc.) und das Ticket wird automatisch mit Team-Zuweisung erstellt." />
+          <FAQ q="Unterstützt BotForge mehrere Sprachen?" a="Ja! Aktuell: Deutsch, Englisch, Französisch, Spanisch, Italienisch, Portugiesisch, Russisch, Japanisch — und weitere sind in Arbeit." />
+          <FAQ q="Was ist wenn BotForge down ist?" a="Wir garantieren 99.9% Uptime. Auf /status siehst du live alle Services. Bei Problemen gibt es Updates auf unserem Discord Support Server." />
         </div>
       </section>
 
