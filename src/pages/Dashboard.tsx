@@ -94,7 +94,7 @@ function LoginView() {
         <p className="text-gray-400 mb-8 text-sm">Melde dich mit Discord an, um deine Server zu verwalten.</p>
 
         <a
-          href="https://discord.com/api/oauth2/authorize?client_id=YOUR_CLIENT_ID&redirect_uri=YOUR_REDIRECT_URI&response_type=code&scope=identify%20guilds"
+          href="https://discord.com/api/oauth2/authorize?client_id=1504519197584003123&redirect_uri=https://bot--forge.vercel.app/callback&response_type=code&scope=identify%20guilds"
           className="btn-primary w-full inline-flex items-center justify-center gap-2"
         >
           <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
